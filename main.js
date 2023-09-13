@@ -18,7 +18,11 @@ loginBtn.addEventListener('click', chekLoginInputs)
 
 function chekLoginInputs() {
     if(userID.value === "" || userPassword.value === "") {
-        alert("Please Fillout the input fields")
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Please Fill out he input field',
+        })
     } else {
         mainLoginStep()
         return
@@ -32,11 +36,23 @@ function mainLoginStep() {
     // Finding Data
     for(i = 0; i < userDataBase.length; i++) {
         if(userDataBase[i].id === inputedID && inputedPass === userDataBase[i].password) {
-            alert("Your are Successfully Loged in")
+            Swal.fire({
+                icon: 'success',
+                title: 'Greate !',
+                text: 'You are successfully loged in',
+            })
         } else if (userDataBase[i].id !== inputedID) {
-            alert("You are giveing a wrong ID")
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Your User ID is Wrong',
+            })
         } else if (userDataBase[i].password !== inputedPass) {
-            alert("Your Password is incorrect")
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Your Password is incorrect',
+            })
         }
     }
 }

@@ -56,3 +56,18 @@ function mainLoginStep() {
         }
     }
 }
+
+// For show scound body or sign up options
+
+const scoundBody = document.querySelector('.scound-body')
+const createAccountOption = document.querySelector('#create-account')
+const backLogin = document.querySelector('#back-login')
+
+createAccountOption.addEventListener('click', () => {
+    scoundBody.classList.add('show')
+})
+
+backLogin.addEventListener('click', () => {
+    scoundBody.classList.remove('show')
+})
+

@@ -8,6 +8,8 @@
 </head>
 <body>
     
+    <!-- Login Area -->
+
     <form action="#" class="login">
         <h2>Login Now</h2>
         <input type="text" id="user-id" placeholder="Your User ID" class="input-field">
@@ -15,6 +17,24 @@
         <input type="submit" value="Login" id="user-login" class="login-btn">
         <p>Don't have an acount? No problem <span id="create-account">create account</span> now.</p>
     </form>
+
+
+    <!-- Sign Up -->
+
+    <div class="scound-body">
+        <form action="#" class="sign-up">
+            <h2>Sign Up</h2>
+            <div class="first-last-name">
+                <input type="text" placeholder="First Name" class="input-field">
+                <input type="text" placeholder="Last Name" class="input-field">
+            </div>
+            <input type="password" placeholder="Choose a Password" class="input-field">
+            <div class="sign-up-btns">
+                <input type="submit" value="Create Account" class="sign-up-btn" style="background: #1dad00; border-color: #1dad00">
+                <input type="submit" value="Back to Login" id="back-login" class="sign-up-btn">
+            </div>
+        </form>
+    </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

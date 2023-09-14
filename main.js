@@ -84,3 +84,53 @@ function emtySignUpInpus() {
     passUser.value = ""
 }
 
+// For Show the loading
+function showLoading() {
+    loadinProgress.classList.add('show')
+}
+
+// For Hide the loading
+function hideLoading() {
+    loadinProgress.classList.remove('show')
+}
+
+// What will done when user click on create account
+createAccountOption.addEventListener('click', () => {
+    showLoading()
+    // Go to sign up part with loading
+    setTimeout(() => {
+        scoundBody.classList.add('show')
+        hideLoading()
+        makeEmtyLoginInput()
+    }, 2000)
+})
+
+
+backLogin.addEventListener('click', () => {
+    showLoading()
+    // Back To login
+    setTimeout(() => {
+        scoundBody.classList.remove('show')
+        hideLoading()
+        emtySignUpInpus()
+    }, 2000)
+})
+
+// At the click of create account btn
+createAccountBtn.addEventListener('click', chekSignUpInputs)
+
+// Cheking the validation of sign up input
+function chekSignUpInputs() {
+    if(firstName.value === "" || lastName.value === "" || passUser.value === "") {
+        // Alert Message
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Please Fill out he input field',
+        })
+    } else {
+        // User Data going to Data Base
+        goDataToDataBase()
+    }
+}
+

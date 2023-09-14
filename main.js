@@ -60,3 +60,27 @@ function mainLoginStep() {
     }
 }
 
+function makeEmtyLoginInput() {
+    userID.value = ""
+    userPassword.value = ""
+}
+
+// For show scound body or sign up options
+
+// Needed DOM exces for sign up
+const scoundBody = document.querySelector('.scound-body')
+const createAccountOption = document.querySelector('#create-account')
+const backLogin = document.querySelector('#back-login')
+const createAccountBtn = document.querySelector('#sign-up-btn')
+const firstName =  document.querySelector('#first-name')
+const lastName =  document.querySelector('#last-name')
+const passUser = document.querySelector('#password-input')
+const loadinProgress = document.querySelector('.loading')
+
+// Emty Sing Up inputs
+function emtySignUpInpus() {
+    firstName.value = ""
+    lastName.value = ""
+    passUser.value = ""
+}
+

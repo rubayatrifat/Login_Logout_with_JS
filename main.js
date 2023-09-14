@@ -134,3 +134,47 @@ function chekSignUpInputs() {
     }
 }
 
+// For going data to data base
+function goDataToDataBase() {
+    const userFirstName = firstName.value
+    const userLastName = lastName.value
+    const userPassword = passUser.value
+
+    // Creating User unique id number
+    const uniqueIdNumber = generateUniqueRandomNumber()
+
+    // Adding Data to data base
+    userDataBase.push({id: uniqueIdNumber,password: userPassword, firstName: userFirstName, lastName: userLastName})
+    // Success Message
+    Swal.fire({
+        title: 'Great',
+        text: "Your account is successfully created",
+        icon: 'success',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'OK'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            `${uniqueIdNumber}`,
+            'Is your Unique ID. Remember It for Next time Login',
+            'info'
+          )
+        }
+      })
+
+    emtySignUpInpus()
+}
+
+// For genarate users unique id number
+function generateUniqueRandomNumber() {
+    const usedNumbers = new Set();
+    let randomNumber;
+  
+    do {
+      randomNumber = Math.floor(Math.random() * 90000) + 10000;
+    } while (usedNumbers.has(randomNumber));
+  
+    usedNumbers.add(randomNumber);
+    return randomNumber;
+}

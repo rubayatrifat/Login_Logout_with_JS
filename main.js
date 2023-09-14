@@ -1,17 +1,14 @@
 // User Data Base
-let userDataBase = [
-    {
-        id: 23456,
-        password: "rifat.17",
-        firstName: "Rubayat",
-        lastName: "Rifat"
-    }
-]                         
+let userDataBase = []                         
 
 // Set This data base to local storage
-let userDataJsonString = JSON.stringify(userDataBase)
 
-localStorage.setItem( 'userDataBase', userDataJsonString)
+let storedUserDataStr = localStorage.getItem('userDataBase');
+
+if(!storedUserDataStr) {
+    let userDataJsonString = JSON.stringify([])
+    localStorage.setItem( 'userDataBase', userDataJsonString)
+}
 
 // Login Works
 
@@ -145,7 +142,6 @@ function chekSignUpInputs() {
 // For going data to data base
 function goDataToDataBase() {
     // Get item form local storage
-
     const userFirstName = firstName.value;
     const userLastName = lastName.value;
     const userPassword = passUser.value;

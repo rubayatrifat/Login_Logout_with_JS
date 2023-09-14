@@ -8,6 +8,9 @@
 </head>
 <body>
     
+    <div class="loading"></div>
+
+
     <!-- Login Area -->
 
     <form action="#" class="login">
@@ -15,7 +18,7 @@
         <input type="text" id="user-id" placeholder="Your User ID" class="input-field">
         <input type="password" id="user-password" placeholder="Your Password" class="input-field">
         <input type="submit" value="Login" id="user-login" class="login-btn">
-        <p>Don't have an acount? No problem <span id="create-account">create account</span> now.</p>
+        <p>Don't have an acount? No problem <span id="create-account">create an account</span> now.</p>
     </form>
 
 
@@ -25,12 +28,12 @@
         <form action="#" class="sign-up">
             <h2>Sign Up</h2>
             <div class="first-last-name">
-                <input type="text" placeholder="First Name" class="input-field">
-                <input type="text" placeholder="Last Name" class="input-field">
+                <input type="text" placeholder="First Name" class="input-field" id="first-name">
+                <input type="text" placeholder="Last Name" class="input-field" id="last-name">
             </div>
-            <input type="password" placeholder="Choose a Password" class="input-field">
+            <input type="password" placeholder="Choose a Password" class="input-field" id="password-input">
             <div class="sign-up-btns">
-                <input type="submit" value="Create Account" class="sign-up-btn" style="background: #1dad00; border-color: #1dad00">
+                <input type="submit" value="Create Account" class="sign-up-btn" id="sign-up-btn" style="background: #1dad00; border-color: #1dad00">
                 <input type="submit" value="Back to Login" id="back-login" class="sign-up-btn">
             </div>
         </form>

@@ -9,13 +9,16 @@ let userDataBase = [
 ]                                                                           
 
 // Login Works
+
+// Needed DOM exces for login
 const userID = document.querySelector("#user-id")
 const userPassword = document.querySelector("#user-password")
 const loginBtn = document.querySelector("#user-login")
 
-
+// At the click of login btn
 loginBtn.addEventListener('click', chekLoginInputs)
 
+// Cheking validation of input
 function chekLoginInputs() {
     if(userID.value === "" || userPassword.value === "") {
         Swal.fire({
@@ -29,45 +32,31 @@ function chekLoginInputs() {
     }
 }
 
+// For user Login perfectly
 function mainLoginStep() {
+    // User ID and Password
     let inputedID = parseInt(userID.value);
     let inputedPass = userPassword.value
 
-    // Finding Data
+    // Finding Data from data base
     for(i = 0; i < userDataBase.length; i++) {
+        // Cheking for login requerment
         if(userDataBase[i].id === inputedID && inputedPass === userDataBase[i].password) {
+            // Alert Message
             Swal.fire({
                 icon: 'success',
                 title: 'Greate !',
                 text: 'You are successfully loged in',
             })
-        } else if (userDataBase[i].id !== inputedID) {
+            makeEmtyLoginInput()
+        } else if (userDataBase[i].id !== inputedID || userDataBase[i].password !== inputedPass) {
+            // Alert Message
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: 'Your User ID is Wrong',
-            })
-        } else if (userDataBase[i].password !== inputedPass) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Your Password is incorrect',
+                text: 'Somethin went wrong',
             })
         }
     }
 }
-
-// For show scound body or sign up options
-
-const scoundBody = document.querySelector('.scound-body')
-const createAccountOption = document.querySelector('#create-account')
-const backLogin = document.querySelector('#back-login')
-
-createAccountOption.addEventListener('click', () => {
-    scoundBody.classList.add('show')
-})
-
-backLogin.addEventListener('click', () => {
-    scoundBody.classList.remove('show')
-})
 

@@ -7,6 +7,62 @@ body {
     background: #282828;
 }
 
+/* ============== Next Page Loading ============= */
+
+.loading {
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 12;
+    position: fixed;
+    --gradient-lavender: #d300c5;
+    --gradient-orange: #ff7a00;
+    --gradient-pink: #ff0169;
+    --gradient-purple: #7638fa;
+    --gradient-yellow: #ffd600;
+    opacity: 0;
+    transition: .4s;
+  }
+
+  .loading.show {
+    opacity: 1;
+  }
+  
+  .loading {
+    animation: 2s linear infinite RefreshedLoadingBarProgress,
+      0.5s ease-out LoadingBarEnter;
+    background: linear-gradient(
+      to right,
+      var(--gradient-yellow),
+      var(--gradient-orange),
+      var(--gradient-pink),
+      var(--gradient-lavender),
+      var(--gradient-purple),
+      var(--gradient-yellow)
+    );
+    background-size: 500%;
+    height: 3px;
+    transform-origin: left;
+    width: 100%;
+  }
+  @keyframes RefreshedLoadingBarProgress {
+    0% {
+      background-position: 125% 0;
+    }
+    100% {
+      background-position: 0% 0;
+    }
+  }
+  @keyframes LoadingBarEnter {
+    0% {
+      transform: scaleX(0);
+    }
+    100% {
+      transform: scaleX(1);
+    }
+  }
+  
+
 /* =========== Login Syle Here =========== */
 
 .login {

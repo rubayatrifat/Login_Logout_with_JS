@@ -6,7 +6,12 @@ let userDataBase = [
         firstName: "Rubayat",
         lastName: "Rifat"
     }
-]                                                                           
+]                         
+
+// Set This data base to local storage
+let userDataJsonString = JSON.stringify(userDataBase)
+
+localStorage.setItem( 'userDataBase', userDataJsonString)
 
 // Login Works
 
@@ -38,10 +43,13 @@ function mainLoginStep() {
     let inputedID = parseInt(userID.value);
     let inputedPass = userPassword.value
 
+    let storedUserDataStr = localStorage.getItem('userDataBase');
+    let storageUserData = JSON.parse(storedUserDataStr);
+
     // Finding Data from data base
-    for(i = 0; i < userDataBase.length; i++) {
+    for(i = 0; i < storageUserData.length; i++) {
         // Cheking for login requerment
-        if(userDataBase[i].id === inputedID && inputedPass === userDataBase[i].password) {
+        if(storageUserData[i].id === inputedID && inputedPass === storageUserData[i].password) {
             // Alert Message
             Swal.fire({
                 icon: 'success',
@@ -49,7 +57,7 @@ function mainLoginStep() {
                 text: 'You are successfully loged in',
             })
             makeEmtyLoginInput()
-        } else if (userDataBase[i].id !== inputedID || userDataBase[i].password !== inputedPass) {
+        } else if (storageUserData[i].id !== inputedID || storageUserData[i].password !== inputedPass) {
             // Alert Message
             Swal.fire({
                 icon: 'error',
@@ -136,15 +144,32 @@ function chekSignUpInputs() {
 
 // For going data to data base
 function goDataToDataBase() {
-    const userFirstName = firstName.value
-    const userLastName = lastName.value
-    const userPassword = passUser.value
+    // Get item form local storage
+
+    const userFirstName = firstName.value;
+    const userLastName = lastName.value;
+    const userPassword = passUser.value;
+
+    let storedUserDataStr = localStorage.getItem('userDataBase');
+    let storageUserData = JSON.parse(storedUserDataStr);
+
 
     // Creating User unique id number
-    const uniqueIdNumber = generateUniqueRandomNumber()
+    const uniqueIdNumber = generateUniqueRandomNumber();
+
+    // New User Data
+    let newUserData = { id: uniqueIdNumber, password: userPassword, firstName: userFirstName, lastName: userLastName };
 
     // Adding Data to data base
-    userDataBase.push({id: uniqueIdNumber,password: userPassword, firstName: userFirstName, lastName: userLastName})
+    storageUserData.push(newUserData);
+
+    // Convert the modified array back to a JSON string
+    let updatedJsonString = JSON.stringify(storageUserData);
+
+    // Update the array of user data in local storage
+    
+    localStorage.setItem('userDataBase', updatedJsonString);
+
     // Success Message
     Swal.fire({
         title: 'Great',
@@ -153,18 +178,19 @@ function goDataToDataBase() {
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'OK'
-      }).then((result) => {
+    }).then((result) => {
         if (result.isConfirmed) {
-          Swal.fire(
-            `${uniqueIdNumber}`,
-            'Is your Unique ID. Remember It for Next time Login',
-            'info'
-          )
+            Swal.fire(
+                `${uniqueIdNumber}`,
+                'Is your Unique ID. Remember It for Next time Login',
+                'info'
+            )
         }
-      })
+    });
 
-    emtySignUpInpus()
+    emtySignUpInpus();
 }
+
 
 // For genarate users unique id number
 function generateUniqueRandomNumber() {

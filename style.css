@@ -5,6 +5,7 @@
 
 body {
     background: #282828;
+    overflow: hidden;
 }
 
 /* ============== Next Page Loading ============= */
@@ -141,7 +142,7 @@ body {
 }
 
 .login .login-btn:active {
-    transform: scale(.98);
+    transform: scale(.90);
 }
 
 .login p {

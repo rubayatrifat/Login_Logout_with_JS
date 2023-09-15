@@ -168,6 +168,18 @@ function chekSignUpInputs() {
             title: 'Oops...',
             text: 'Please Fill out he input field',
         })
+    } else if(passUser.value.length < 6) {
+        showLoading()
+        showOverlay()
+        setTimeout(() => {
+            hideLoading()
+            hideOverlay()
+            Swal.fire({
+                icon: 'warning',
+                title: 'Please...',
+                text: 'Provied a password at least 6 character',
+            })
+        }, 2000)
     } else {
         // User Data going to Data Base
         goDataToDataBase()
@@ -185,11 +197,17 @@ function isUserExist() {
     // Is user exist checking
     for (i = 0; i < storageUserData.length; i++) {
         if (storageUserData[i].firstName === userFirstName && storageUserData[i].lastName === userLastName) {
-            Swal.fire({
-                icon: 'warning',
-                title: 'This user already exists',
-                text: 'Please provide another name; this user already exists.',
-            });
+            showLoading()
+            showOverlay()
+            setTimeout(() => {
+                hideLoading()
+                hideOverlay()
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'This user already exists',
+                    text: 'Please provide another name; this user already exists.',
+                })
+            }, 2000)
             return true; // User already exists
         }
     }
@@ -229,24 +247,33 @@ function goDataToDataBase() {
     localStorage.setItem('userDataBase', updatedJsonString);
 
     // Success Message
-    Swal.fire({
-        title: 'Great',
-        text: "Your account is successfully created",
-        icon: 'success',
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'OK'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            Swal.fire(
-                `${uniqueIdNumber}`,
-                'Is your Unique ID. Remember It for Next time Login',
-                'info'
-            );
-        }
-    });
+    showLoading()
+    showOverlay()
 
-    emtySignUpInpus();
+    setTimeout(() => {
+        hideLoading()
+        hideOverlay()
+
+        Swal.fire({
+            title: 'Great',
+            text: "Your account is successfully created",
+            icon: 'success',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'OK'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    `${uniqueIdNumber}`,
+                    'Is your Unique ID. Remember It for Next time Login',
+                    'info'
+                );
+            }
+        })
+
+        emtySignUpInpus();
+    }, 2000)
+
 }
 
 

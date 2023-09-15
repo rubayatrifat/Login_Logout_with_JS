@@ -16,6 +16,28 @@ if(!storedUserDataStr) {
 const userID = document.querySelector("#user-id")
 const userPassword = document.querySelector("#user-password")
 const loginBtn = document.querySelector("#user-login")
+const loadinProgress = document.querySelector('.loading')
+const bodyOverlay = document.querySelector('.body-overlay')
+
+// For Show the loading
+function showLoading() {
+    loadinProgress.classList.add('show')
+}
+
+// For Hide the loading
+function hideLoading() {
+    loadinProgress.classList.remove('show')
+}
+
+// For show overlay
+function showOverlay() {
+    bodyOverlay.classList.add('show')
+}
+
+// For Hide overlay
+function hideOverlay() {
+    bodyOverlay.classList.remove('show')
+}
 
 // At the click of login btn
 loginBtn.addEventListener('click', chekLoginInputs)
@@ -47,20 +69,40 @@ function mainLoginStep() {
     for(i = 0; i < storageUserData.length; i++) {
         // Cheking for login requerment
         if(storageUserData[i].id === inputedID && inputedPass === storageUserData[i].password) {
-            // Alert Message
-            Swal.fire({
-                icon: 'success',
-                title: 'Greate !',
-                text: 'You are successfully loged in',
-            })
-            makeEmtyLoginInput()
+            // show loading
+            showLoading()
+            showOverlay()
+            // Some time later
+            setTimeout(() => {
+                // Hide Loading
+                hideLoading()
+                hideOverlay()
+                // Alert Message
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Greate !',
+                    text: 'You are successfully loged in',
+                })
+                // Reset the inputs
+                makeEmtyLoginInput()
+            }, 2000)
         } else if (storageUserData[i].id !== inputedID || storageUserData[i].password !== inputedPass) {
-            // Alert Message
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Somethin went wrong',
-            })
+            // show loading
+            showLoading()
+            //show Ovverlay
+            showOverlay()
+            // Some time later
+            setTimeout(() => {
+                // Hide Loading
+                hideLoading()
+                hideOverlay()
+                // Alert Message
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Somethin went wrong',
+                })
+            }, 2000)
         }
     }
 }
@@ -80,7 +122,6 @@ const createAccountBtn = document.querySelector('#sign-up-btn')
 const firstName =  document.querySelector('#first-name')
 const lastName =  document.querySelector('#last-name')
 const passUser = document.querySelector('#password-input')
-const loadinProgress = document.querySelector('.loading')
 
 // Emty Sing Up inputs
 function emtySignUpInpus() {
@@ -89,23 +130,15 @@ function emtySignUpInpus() {
     passUser.value = ""
 }
 
-// For Show the loading
-function showLoading() {
-    loadinProgress.classList.add('show')
-}
-
-// For Hide the loading
-function hideLoading() {
-    loadinProgress.classList.remove('show')
-}
-
 // What will done when user click on create account
 createAccountOption.addEventListener('click', () => {
     showLoading()
+    showOverlay()
     // Go to sign up part with loading
     setTimeout(() => {
         scoundBody.classList.add('show')
         hideLoading()
+        hideOverlay()
         makeEmtyLoginInput()
     }, 2000)
 })
@@ -113,10 +146,12 @@ createAccountOption.addEventListener('click', () => {
 
 backLogin.addEventListener('click', () => {
     showLoading()
+    showOverlay()
     // Back To login
     setTimeout(() => {
         scoundBody.classList.remove('show')
         hideLoading()
+        hideOverlay()
         emtySignUpInpus()
     }, 2000)
 })

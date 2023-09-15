@@ -22,6 +22,7 @@ body {
     --gradient-yellow: #ffd600;
     opacity: 0;
     transition: .4s;
+    z-index: 9999;
   }
 
   .loading.show {
@@ -62,6 +63,21 @@ body {
     }
   }
   
+/* Loading  Overlay */
+
+.body-overlay {
+    display: none;
+}
+
+.body-overlay.show {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    z-index: 999;
+    position: absolute;
+    opacity: 0.3;
+}
 
 /* =========== Login Syle Here =========== */
 

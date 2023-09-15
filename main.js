@@ -139,9 +139,33 @@ function chekSignUpInputs() {
     }
 }
 
+// Does this user already exist
+function isUserExist() {
+    const userFirstName = firstName.value;
+    const userLastName = lastName.value;
+
+    let storedUserDataStr = localStorage.getItem('userDataBase');
+    let storageUserData = JSON.parse(storedUserDataStr);
+
+    // Is user exist checking
+    for (i = 0; i < storageUserData.length; i++) {
+        if (storageUserData[i].firstName === userFirstName && storageUserData[i].lastName === userLastName) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'This user already exists',
+                text: 'Please provide another name; this user already exists.',
+            });
+            return true; // User already exists
+        }
+    }
+
+    return false; // User does not exist
+}
+
+
 // For going data to data base
 function goDataToDataBase() {
-    // Get item form local storage
+    // Get item from local storage
     const userFirstName = firstName.value;
     const userLastName = lastName.value;
     const userPassword = passUser.value;
@@ -149,6 +173,10 @@ function goDataToDataBase() {
     let storedUserDataStr = localStorage.getItem('userDataBase');
     let storageUserData = JSON.parse(storedUserDataStr);
 
+    // Is this user's name already exist
+    if (isUserExist()) {
+        return; // User already exists, don't add again
+    }
 
     // Creating User unique id number
     const uniqueIdNumber = generateUniqueRandomNumber();
@@ -163,7 +191,6 @@ function goDataToDataBase() {
     let updatedJsonString = JSON.stringify(storageUserData);
 
     // Update the array of user data in local storage
-    
     localStorage.setItem('userDataBase', updatedJsonString);
 
     // Success Message
@@ -180,7 +207,7 @@ function goDataToDataBase() {
                 `${uniqueIdNumber}`,
                 'Is your Unique ID. Remember It for Next time Login',
                 'info'
-            )
+            );
         }
     });
 

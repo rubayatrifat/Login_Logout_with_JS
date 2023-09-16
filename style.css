@@ -8,6 +8,10 @@ body {
     overflow: hidden;
 }
 
+.main-page {
+    display: none;
+}
+
 /* ============== Next Page Loading ============= */
 
 .loading {

@@ -157,10 +157,13 @@ backLogin.addEventListener('click', () => {
 })
 
 // At the click of create account btn
-createAccountBtn.addEventListener('click', chekSignUpInputs)
+createAccountBtn.addEventListener('click', checkSignUpInputs)
+
+// Regular expression for checking input value
+const regExp = /[0-9!@#$%^&*()_+{}\[\]:;<>,.?~\\\/\-]/;
 
 // Cheking the validation of sign up input
-function chekSignUpInputs() {
+function checkSignUpInputs() {
     if(firstName.value === "" || lastName.value === "" || passUser.value === "") {
         // Alert Message
         Swal.fire({
@@ -178,6 +181,18 @@ function chekSignUpInputs() {
                 icon: 'warning',
                 title: 'Please...',
                 text: 'Provied a password at least 6 character',
+            })
+        }, 2000)
+    } else if (regExp.test(firstName.value) || regExp.test(lastName.value)) {
+        showLoading()
+        showOverlay()
+        setTimeout(() => {
+            hideLoading()
+            hideOverlay()
+            Swal.fire({
+                icon: 'warning',
+                title: 'Number or Special Crarecter Not supported',
+                text: 'Please provied a First Name or Last Name without number or special crarecter',
             })
         }, 2000)
     } else {

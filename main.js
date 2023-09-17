@@ -65,6 +65,26 @@ function mainLoginStep() {
     let storedUserDataStr = localStorage.getItem('userDataBase');
     let storageUserData = JSON.parse(storedUserDataStr);
 
+    // If Database haven't any data
+    if(storageUserData.length == 0) {
+        // show loading
+        showLoading()
+        //show Ovverlay
+        showOverlay()
+        // Some time later
+        setTimeout(() => {
+            // Hide Loading
+            hideLoading()
+            hideOverlay()
+            // Alert Message
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'We can\'t find this user in that information',
+            })
+        }, 2000)
+    }
+
     // Finding Data from data base
     for(i = 0; i < storageUserData.length; i++) {
         // Cheking for login requerment
@@ -100,7 +120,7 @@ function mainLoginStep() {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: 'Somethin went wrong',
+                    text: 'We can\'t find this user in that information',
                 })
             }, 2000)
         }

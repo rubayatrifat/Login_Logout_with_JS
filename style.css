@@ -166,6 +166,26 @@ body {
     text-decoration: underline;
 }
 
+/* Password Input */
+
+.password-input {
+    position: relative;
+}
+
+.password-input i {
+    top: 13px;
+    position: absolute;
+    right: 11px;
+    color: #7c7c7c;
+    font-size: 14px;
+    background: #282828;
+    padding: 0 7px;
+    cursor: pointer;
+}
+
+.password-input #hide-pass {
+    display: none;
+}
 
 /* ============= Sing Up Style Here =========== */
 

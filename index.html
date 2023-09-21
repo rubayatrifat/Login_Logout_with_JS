@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Logout With JS</title>
+    <link rel="stylesheet" href="fontawesome-all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -18,7 +19,11 @@
     <form action="#" class="login">
         <h2>Login Now</h2>
         <input type="text" id="user-id" placeholder="Your User ID" class="input-field">
-        <input type="password" id="user-password" placeholder="Your Password" class="input-field">
+        <div class="password-input">
+            <input type="password" id="user-password" placeholder="Your Password" class="input-field">
+            <i class="fa-regular fa-eye" id="show-pass"></i>
+            <i class="fa-regular fa-eye-slash" id="hide-pass"></i>
+        </div>
         <input type="submit" value="Login" id="user-login" class="login-btn">
         <p>Don't have an acount? No problem <span id="create-account">create an account</span> now.</p>
     </form>
@@ -33,7 +38,11 @@
                 <input type="text" placeholder="First Name" class="input-field" id="first-name">
                 <input type="text" placeholder="Last Name" class="input-field" id="last-name">
             </div>
-            <input type="password" placeholder="Choose a Password" class="input-field" id="password-input">
+            <div class="password-input">
+                <input type="password" placeholder="Choose a Password" class="input-field" id="password-input">
+                <i class="fa-regular fa-eye" id="show-pass"></i>
+                <i class="fa-regular fa-eye-slash" id="hide-pass"></i>
+            </div>
             <div class="sign-up-btns">
                 <input type="submit" value="Create Account" class="sign-up-btn" id="sign-up-btn" style="background: #1dad00; border-color: #1dad00">
                 <input type="submit" value="Back to Login" id="back-login" class="sign-up-btn">

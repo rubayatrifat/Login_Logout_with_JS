@@ -12,6 +12,22 @@ if(!storedUserDataStr) {
 
 // Login Works
 
+// Show Password
+const showPass = document.querySelector('#show-pass')
+const hidePass = document.querySelector('#hide-pass')
+
+showPass.addEventListener('click', () => {
+    showPass.style.display = "none"
+    hidePass.style.display = "block"
+    userPassword.type = "text"
+})
+
+hidePass.addEventListener('click', () => {
+    showPass.style.display = "block"
+    hidePass.style.display = "none"
+    userPassword.type = "password"
+})
+
 // Needed DOM exces for login
 const userID = document.querySelector("#user-id")
 const userPassword = document.querySelector("#user-password")

@@ -181,6 +181,8 @@ body {
     background: #282828;
     padding: 0 7px;
     cursor: pointer;
+    width: 17px;
+    text-align: center;
 }
 
 .password-input #hide-pass {

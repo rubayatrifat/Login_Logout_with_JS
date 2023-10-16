@@ -13,19 +13,32 @@ if(!storedUserDataStr) {
 // Login Works
 
 // Show Password
-const showPass = document.querySelector('#show-pass')
-const hidePass = document.querySelector('#hide-pass')
+const showPasses = document.querySelectorAll('#show-pass')
+const hidePasses = document.querySelectorAll('#hide-pass')
+const passHideShow = document.querySelectorAll('.show-hide-pass')
 
-showPass.addEventListener('click', () => {
-    showPass.style.display = "none"
-    hidePass.style.display = "block"
-    userPassword.type = "text"
+showPasses.forEach(showPass => {
+    showPass.addEventListener('click', () => {
+        showPass.style.display = "none"
+        passHideShow.forEach(pass => {
+            pass.type = "text"
+        })
+        hidePasses.forEach(hidePass => {
+            hidePass.style.display = "block"
+        })
+    })
 })
 
-hidePass.addEventListener('click', () => {
-    showPass.style.display = "block"
-    hidePass.style.display = "none"
-    userPassword.type = "password"
+hidePasses.forEach(hidePass => {
+    hidePass.addEventListener('click', () => {
+        hidePass.style.display = "none"
+        passHideShow.forEach(pass => {
+            pass.type = "password"
+        })
+        showPasses.forEach(showPass => {
+            showPass.style.display = "block"
+        })
+    })
 })
 
 // Needed DOM exces for login

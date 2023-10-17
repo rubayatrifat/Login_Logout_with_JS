@@ -8,9 +8,8 @@ body {
     overflow: hidden;
 }
 
-.main-page {
-    display: none;
-}
+
+
 
 /* ============== Next Page Loading ============= */
 
@@ -165,6 +164,34 @@ body {
     cursor: pointer;
     text-decoration: underline;
 }
+
+/* =========== Main Page =========== */
+
+.main-page {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    z-index: 10;
+    position: relative;
+    background-color: #0d1117;
+}
+
+.main-page.display {
+    display: block;
+}
+
+.main-page .header-area {
+    background: #010409;
+}
+
+.main-page .header-area .user-info img {
+    width: 45px;
+    border-radius: 50%;
+}
+
+
+/* =========== Main Page end =========== */
 
 /* Password Input */
 

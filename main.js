@@ -13,33 +13,27 @@ if(!storedUserDataStr) {
 // Login Works
 
 // Show Password
-const showPasses = document.querySelectorAll('#show-pass')
-const hidePasses = document.querySelectorAll('#hide-pass')
-const passHideShow = document.querySelectorAll('.show-hide-pass')
+const showPasses = document.querySelectorAll('#show-pass');
+const hidePasses = document.querySelectorAll('#hide-pass');
+const passHideShow = document.querySelectorAll('.show-hide-pass');
 
-showPasses.forEach(showPass => {
+showPasses.forEach((showPass, index) => {
     showPass.addEventListener('click', () => {
-        showPass.style.display = "none"
-        passHideShow.forEach(pass => {
-            pass.type = "text"
-        })
-        hidePasses.forEach(hidePass => {
-            hidePass.style.display = "block"
-        })
-    })
-})
+        showPass.style.display = "none";
+        hidePasses[index].style.display = "block";
+        passHideShow[index].setAttribute("type", "text");
+    });
+});
 
-hidePasses.forEach(hidePass => {
+hidePasses.forEach((hidePass, index) => {
     hidePass.addEventListener('click', () => {
-        hidePass.style.display = "none"
-        passHideShow.forEach(pass => {
-            pass.type = "password"
-        })
-        showPasses.forEach(showPass => {
-            showPass.style.display = "block"
-        })
-    })
-})
+        hidePass.style.display = "none";
+        showPasses[index].style.display = "block";
+        passHideShow[index].setAttribute("type", "password");
+    });
+});
+
+
 
 // Needed DOM exces for login
 const userID = document.querySelector("#user-id")

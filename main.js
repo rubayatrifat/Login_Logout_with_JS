@@ -157,34 +157,51 @@ function makeEmtyLoginInput() {
 
 // For show scound body or sign up options
 
-// Needed DOM exces for sign up
-const scoundBody = document.querySelector('.scound-body')
-const createAccountOption = document.querySelector('#create-account')
-const backLogin = document.querySelector('#back-login')
-const createAccountBtn = document.querySelector('#sign-up-btn')
-const firstName =  document.querySelector('#first-name')
-const lastName =  document.querySelector('#last-name')
-const passUser = document.querySelector('#password-input')
+// Needed DOM access for sign up
+const secondBody = document.querySelector('.scound-body');
+const createAccountOption = document.querySelector('#create-account');
+const backLogin = document.querySelector('#back-login');
+const createAccountBtn = document.querySelector('#sign-up-btn');
+const firstName =  document.querySelector('#first-name');
+const lastName =  document.querySelector('#last-name');
+const passUser = document.querySelector('#password-input');
 
-// Emty Sing Up inputs
-function emtySignUpInpus() {
-    firstName.value = ""
-    lastName.value = ""
-    passUser.value = ""
+// Empty Sign Up inputs
+function emptySignUpInputs() { 
+    firstName.value = "";
+    lastName.value = "";
+    passUser.value = "";
 }
 
-// What will done when user click on create account
+// Check if Sign Up exists in local storage
+const storedCondition = localStorage.getItem('signUp');
+
+// If Sign Up doesn't exist in local storage
+if (storedCondition === null) {
+    localStorage.setItem('signUp', 'false');
+}
+
+// When the "create account" button is clicked
 createAccountOption.addEventListener('click', () => {
-    showLoading()
-    showOverlay()
-    // Go to sign up part with loading
+    // Check if the "signUp" condition is "true"
+    const signUpCondition = localStorage.getItem('signUp') === 'true';
+
+    if (signUpCondition) {
+        secondBody.classList.add('show'); // Fixed variable name
+    }
+
+    showLoading();
+    showOverlay();
+
     setTimeout(() => {
-        scoundBody.classList.add('show')
-        hideLoading()
-        hideOverlay()
-        makeEmtyLoginInput()
-    }, 2000)
-})
+        hideLoading();
+        hideOverlay();
+        makeEmtyLoginInput();
+    }, 2000);
+
+    // Change the "signUp" condition to "true" after the actions
+    localStorage.setItem('signUp', 'true');
+});
 
 
 backLogin.addEventListener('click', () => {

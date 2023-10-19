@@ -205,14 +205,27 @@ createAccountOption.addEventListener('click', () => {
 
 });
 
+// if the page location is not in signUp
+if(storedCondition === 'false') {
+    secondBody.classList.remove('show')
+}
 
 backLogin.addEventListener('click', () => {
+
+    localStorage.setItem('signUp', 'false')
+
+    const signUpConditionFalse = localStorage.getItem('signUp') === 'false'
+
+    if(signUpConditionFalse) {
+        setTimeout(() => {
+            secondBody.classList.remove('show')
+        }, 2000)
+    }
 
     showLoading()
     showOverlay()
     // Back To login
     setTimeout(() => {
-        secondBody.classList.remove('show')
         hideLoading()
         hideOverlay()
         emptySignUpInputs()

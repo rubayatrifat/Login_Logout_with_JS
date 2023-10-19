@@ -158,61 +158,64 @@ function makeEmtyLoginInput() {
 // For show scound body or sign up options
 
 // Needed DOM access for sign up
-const secondBody = document.querySelector('.scound-body');
-const createAccountOption = document.querySelector('#create-account');
-const backLogin = document.querySelector('#back-login');
-const createAccountBtn = document.querySelector('#sign-up-btn');
-const firstName =  document.querySelector('#first-name');
-const lastName =  document.querySelector('#last-name');
-const passUser = document.querySelector('#password-input');
+const secondBody = document.querySelector('.scound-body')
+const createAccountOption = document.querySelector('#create-account')
+const backLogin = document.querySelector('#back-login')
+const createAccountBtn = document.querySelector('#sign-up-btn')
+const firstName = document.querySelector('#first-name')
+const lastName = document.querySelector('#last-name')
+const passUser = document.querySelector('#password-input')
 
 // Empty Sign Up inputs
 function emptySignUpInputs() { 
-    firstName.value = "";
-    lastName.value = "";
-    passUser.value = "";
+    firstName.value = ""
+    lastName.value = ""
+    passUser.value = ""
 }
 
 // Check if Sign Up exists in local storage
-const storedCondition = localStorage.getItem('signUp');
+const storedCondition = localStorage.getItem('signUp')
 
-// If Sign Up doesn't exist in local storage
-if (storedCondition === null) {
-    localStorage.setItem('signUp', 'false');
+// if the page location in signUp
+if (storedCondition === 'true') {
+    secondBody.classList.add('show')
 }
 
 // When the "create account" button is clicked
 createAccountOption.addEventListener('click', () => {
+    localStorage.setItem('signUp', 'true') // Set "signUp" to true when the button is clicked
+
     // Check if the "signUp" condition is "true"
-    const signUpCondition = localStorage.getItem('signUp') === 'true';
+    const signUpCondition = localStorage.getItem('signUp') === 'true'
 
     if (signUpCondition) {
-        secondBody.classList.add('show'); // Fixed variable name
+        setTimeout(() => {
+            secondBody.classList.add('show');
+        }, 2000)
     }
 
-    showLoading();
-    showOverlay();
+    showLoading()
+    showOverlay()
 
     setTimeout(() => {
-        hideLoading();
-        hideOverlay();
-        makeEmtyLoginInput();
-    }, 2000);
+        hideLoading()
+        hideOverlay()
+        makeEmtyLoginInput()
+    }, 2000)
 
-    // Change the "signUp" condition to "true" after the actions
-    localStorage.setItem('signUp', 'true');
 });
 
 
 backLogin.addEventListener('click', () => {
+
     showLoading()
     showOverlay()
     // Back To login
     setTimeout(() => {
-        scoundBody.classList.remove('show')
+        secondBody.classList.remove('show')
         hideLoading()
         hideOverlay()
-        emtySignUpInpus()
+        emptySignUpInputs()
     }, 2000)
 })
 
@@ -346,7 +349,7 @@ function goDataToDataBase() {
             }
         })
 
-        emtySignUpInpus();
+        emptySignUpInpus();
     }, 2000)
 
 }

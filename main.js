@@ -129,7 +129,7 @@ function mainLoginStep() {
                     title: 'Greate !',
                     text: 'You are successfully loged in',
                 })
-                // Go main page
+                // Show main page loading
                 mainPageLoading.classList.add('show')
                 // Reset the inputs
                 makeEmtyLoginInput()
@@ -145,7 +145,7 @@ function mainLoginStep() {
 
             }, 2000)
 
-        } else if (storageUserData[i].id !== inputedID || storageUserData[i].password !== inputedPass) {
+        } else {
             // show loading
             showLoading()
             //show Ovverlay
@@ -359,24 +359,27 @@ function goDataToDataBase() {
 
     setTimeout(() => {
         hideLoading()
-        hideOverlay()
 
         Swal.fire({
             title: 'Great',
             text: "Your account is successfully created",
             icon: 'success',
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'OK'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire(
-                    `${uniqueIdNumber}`,
-                    'Is your Unique ID. Remember It for Next time Login',
-                    'info'
-                );
-            }
+        }).then(() => {
+            Swal.fire(
+                `${uniqueIdNumber}`,
+                'Is your Unique ID. Remember It for Next time Login',
+                'info'
+            );
         })
+
+        mainPageLoading.classList.add('show')
+        setTimeout(() => {
+            maninPage.classList.add('display')
+            setTimeout(() => {
+                hideOverlay()
+                mainPageLoading.classList.remove('show')
+            })
+        }, 2000)
 
         emptySignUpInputs();
     }, 2000)

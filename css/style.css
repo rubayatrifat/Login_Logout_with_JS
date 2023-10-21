@@ -244,21 +244,28 @@ body {
     background: #4e3d95;
     width: 37%;
     margin: auto;
-    padding: 17px 0;
+    padding: 13px 0;
     border-radius: 0 0 20px 20px;
 }
 
 .main-menu li {
     list-style: none;
     color: #cdbefb;
-    margin: 0 37px;
+    margin: 0 33px;
     font-size: 21px;
     cursor: pointer;
     transition: .3s;
+    padding: 0px 5px 4px 5px;
+    border-radius: 4px;
 }
 
 .main-menu li:hover {
     color: #fff;
+}
+
+.main-menu li.active {
+    color: #fff;
+    border-bottom: 3px solid #fff;
 }
 
 

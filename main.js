@@ -362,7 +362,7 @@ function goDataToDataBase() {
             }
         })
 
-        emptySignUpInpus();
+        emptySignUpInputs();
     }, 2000)
 
 }

@@ -41,6 +41,10 @@ const userPassword = document.querySelector("#user-password")
 const loginBtn = document.querySelector("#user-login")
 const loadinProgress = document.querySelector('.loading')
 const bodyOverlay = document.querySelector('.body-overlay')
+// Dom exces for go to main page
+const maninPage = document.querySelector('.main-page')
+const mainPageLoading =  document.querySelector('.loader')
+
 
 // For Show the loading
 function showLoading() {
@@ -119,16 +123,28 @@ function mainLoginStep() {
             setTimeout(() => {
                 // Hide Loading
                 hideLoading()
-                hideOverlay()
                 // Alert Message
                 Swal.fire({
                     icon: 'success',
                     title: 'Greate !',
                     text: 'You are successfully loged in',
                 })
+                // Go main page
+                mainPageLoading.classList.add('show')
                 // Reset the inputs
                 makeEmtyLoginInput()
+
+                setTimeout(() => {
+                    maninPage.classList.add('display')
+                    setTimeout(() => {
+                        hideOverlay()
+                        mainPageLoading.classList.remove('show')
+                    }, 1000)
+
+                }, 2000)
+
             }, 2000)
+
         } else if (storageUserData[i].id !== inputedID || storageUserData[i].password !== inputedPass) {
             // show loading
             showLoading()

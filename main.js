@@ -83,6 +83,12 @@ function chekLoginInputs() {
     }
 }
 
+const mainPageCondition = localStorage.getItem('mainPage')
+
+if(mainPageCondition === 'true') {
+    maninPage.classList.add('display')
+}
+
 // For user Login perfectly
 function mainLoginStep() {
     // User ID and Password
@@ -93,7 +99,7 @@ function mainLoginStep() {
     let storageUserData = JSON.parse(storedUserDataStr);
 
     // If Database haven't any data
-    if(storageUserData.length == 0) {
+    if(storageUserData.length === 0) {
         // show loading
         showLoading()
         //show Ovverlay
@@ -135,7 +141,14 @@ function mainLoginStep() {
                 makeEmtyLoginInput()
 
                 setTimeout(() => {
-                    maninPage.classList.add('display')
+                    localStorage.setItem('mainPage', 'true')
+
+                    const ifInMainPage = localStorage.getItem('mainPage') === 'true'
+                    
+                    if(ifInMainPage) {
+                        maninPage.classList.add('display')
+                    }
+
                     setTimeout(() => {
                         hideOverlay()
                         mainPageLoading.classList.remove('show')
@@ -164,6 +177,10 @@ function mainLoginStep() {
             }, 2000)
         }
     }
+}
+
+if(mainPageCondition === 'false') {
+    maninPage.classList.remove('display')
 }
 
 function makeEmtyLoginInput() {
@@ -374,6 +391,8 @@ function goDataToDataBase() {
 
         mainPageLoading.classList.add('show')
         setTimeout(() => {
+            localStorage.setItem('signUp', 'false')
+            localStorage.setItem('mainPage', 'true')
             maninPage.classList.add('display')
             setTimeout(() => {
                 hideOverlay()

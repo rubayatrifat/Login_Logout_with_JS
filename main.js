@@ -91,11 +91,17 @@ if(mainPageCondition === 'true') {
 
 // User's name dom exces
 const nameOfUser = document.querySelector('.name-of-user');
+const dynamicLogo = document.querySelector('.dynamic-logo')
 
-const storedUserName = localStorage.getItem('userName');
+const storedUserFirstName = localStorage.getItem('userFirstName');
+const storedUseLastName = localStorage.getItem('userLastName')
 
-if (storedUserName) {
-    nameOfUser.textContent = storedUserName;
+if (storedUserFirstName) {
+    nameOfUser.textContent = storedUserFirstName;
+}
+
+if (storedUseLastName) {
+    dynamicLogo.textContent = `${storedUserFirstName} : ${storedUseLastName}`
 }
 
 
@@ -137,9 +143,14 @@ function mainLoginStep() {
             showLoading()
             showOverlay()
 
-            localStorage.setItem('userName', storageUserData[i].firstName)
+            localStorage.setItem('userFirstName', storageUserData[i].firstName)
+
+            localStorage.setItem('userLastName', storageUserData[i].lastName)
 
             nameOfUser.textContent = storageUserData[i].firstName
+
+            dynamicLogo.textContent = `${storageUserData[i].firstName} : ${storageUserData[i].lastName}`
+
 
             // Some time later
             setTimeout(() => {
@@ -388,7 +399,7 @@ function goDataToDataBase() {
 
     // Show user's name in DOM
 
-    localStorage.setItem('userName', userFirstName)
+    localStorage.setItem('userFirstName', userFirstName)
 
     nameOfUser.textContent = userFirstName
 

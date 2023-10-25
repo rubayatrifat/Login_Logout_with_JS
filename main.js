@@ -378,6 +378,7 @@ function goDataToDataBase() {
             setTimeout(() => {
                 hideOverlay()
                 mainPageLoading.classList.remove('show')
+                secondBody.classList.remove('show')
             })
         }, 2000)
 

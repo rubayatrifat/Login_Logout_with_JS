@@ -89,6 +89,17 @@ if(mainPageCondition === 'true') {
     maninPage.classList.add('display')
 }
 
+// User's name dom exces
+const nameOfUser = document.querySelector('.name-of-user');
+
+const storedUserName = localStorage.getItem('userName');
+
+if (storedUserName) {
+    nameOfUser.textContent = storedUserName;
+}
+
+
+
 // For user Login perfectly
 function mainLoginStep() {
     // User ID and Password
@@ -125,6 +136,11 @@ function mainLoginStep() {
             // show loading
             showLoading()
             showOverlay()
+
+            localStorage.setItem('userName', storageUserData[i].firstName)
+
+            nameOfUser.textContent = storageUserData[i].firstName
+
             // Some time later
             setTimeout(() => {
                 // Hide Loading
@@ -178,6 +194,7 @@ function mainLoginStep() {
         }
     }
 }
+
 
 if(mainPageCondition === 'false') {
     maninPage.classList.remove('display')
@@ -339,7 +356,6 @@ function isUserExist() {
     return false; // User does not exist
 }
 
-
 // For going data to data base
 function goDataToDataBase() {
     // Get item from local storage
@@ -369,6 +385,12 @@ function goDataToDataBase() {
 
     // Update the array of user data in local storage
     localStorage.setItem('userDataBase', updatedJsonString);
+
+    // Show user's name in DOM
+
+    localStorage.setItem('userName', userFirstName)
+
+    nameOfUser.textContent = userFirstName
 
     // Success Message
     showLoading()

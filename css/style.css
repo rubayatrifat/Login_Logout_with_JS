@@ -316,7 +316,9 @@ body {
 }
 
 .body-area h2 span {
-    font-size: 15px;
+    font-size: 40px;
+    font-family: impact;
+    font-weight: 400;
 }
 
 .socials {

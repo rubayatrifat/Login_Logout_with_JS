@@ -401,7 +401,11 @@ function goDataToDataBase() {
 
     localStorage.setItem('userFirstName', userFirstName)
 
+    localStorage.setItem('userLastName', userLastName)
+
     nameOfUser.textContent = userFirstName
+
+    dynamicLogo.textContent = `${userFirstName} : ${userLastName}`
 
     // Success Message
     showLoading()

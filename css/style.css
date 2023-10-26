@@ -310,10 +310,26 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 648px;
-    background: linear-gradient(90deg, #fffc30, #08f7ff, #d632ff);
+}
+
+.linear-wipe {
+    text-align: center;
+    background: linear-gradient(90deg,  #ff33ee, #08ddff, #29FD61, #fffc30, #fc56ee);
+    background-size: 200% auto;
+    color: #000;
+    background-clip: text;
+    text-fill-color: transparent;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    animation: shine 3s linear infinite;
 }
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
 
 .body-area h2 span {
     font-size: 40px;
@@ -333,6 +349,87 @@ body {
     color: #303030;
     font-size: 30px;
     margin: 0px 12px;
+}
+
+.user-actions {
+    position: absolute;
+    color: #fff;
+    top: 100px;
+    right: 8px;
+    background: #4242428f;
+    font-family: tahoma;
+    padding: 33px 49px 40px 50px;
+    border-radius: 11px;
+    backdrop-filter: blur(2px);
+    opacity: 0;
+    transition: .4s;
+} 
+
+.user-actions.show-user-menu {
+    opacity: 1;
+    top: 61px;
+}
+
+.user-menu-close {
+    font-size: 14px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #404040c2;
+    width: 35px;
+    text-align: center;
+    height: 35px;
+    border-radius: 0 8px 0 13px;
+    line-height: 33px;
+    cursor: pointer;
+}
+
+.user-menu-info {
+    margin-bottom: 16px;
+    border-bottom: 3px double #6a6a6a;
+}
+
+.user-actions .user-menu-info span {
+    display: block;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.user-menu-info .user-menu-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #4b7fb7;
+    margin-bottom: 13px ;
+}
+
+.user-menu-info .user-menu-id {
+    color: #a7a7a7;
+    font-size: 15px;
+}
+
+.user-actions ul li {
+    list-style: none;
+    font-size: 15px;
+    letter-spacing: 0.4px;
+    margin-bottom: 20px;
+    margin-left: 18px;
+    color: #bdbdbd;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.user-actions ul li:hover {
+    color: #fff;
+}
+
+.user-actions ul li:hover i {
+    color: #fff;
+}
+
+.user-actions ul li i {
+    margin-right: 6px;
+    color: #636883;
+    transition: .2s;
 }
 
 /* =========== Main Page end =========== */

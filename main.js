@@ -90,11 +90,17 @@ if(mainPageCondition === 'true') {
 }
 
 // User's name dom exces
+
+// Showing the user info in main page with local storage
 const nameOfUser = document.querySelector('.name-of-user');
 const dynamicLogo = document.querySelector('.dynamic-logo')
+const menuUserName = document.querySelector('.user-menu-name')
+const menuUserId = document.querySelector('.user-menu-id')
 
+// Showing the user info in main page with local storage
 const storedUserFirstName = localStorage.getItem('userFirstName');
 const storedUseLastName = localStorage.getItem('userLastName')
+const storedUserId = localStorage.getItem('userId')
 
 if (storedUserFirstName) {
     nameOfUser.textContent = storedUserFirstName;
@@ -104,6 +110,11 @@ if (storedUseLastName) {
     dynamicLogo.textContent = `${storedUserFirstName} : ${storedUseLastName}`
 }
 
+menuUserName.textContent = `${storedUserFirstName} ${storedUseLastName}`
+
+if(storedUserId) {
+    menuUserId.textContent = `User ID: ${storedUserId}`
+}
 
 
 // For user Login perfectly
@@ -147,9 +158,15 @@ function mainLoginStep() {
 
             localStorage.setItem('userLastName', storageUserData[i].lastName)
 
+            localStorage.setItem('userId', storageUserData[i].id)
+
             nameOfUser.textContent = storageUserData[i].firstName
 
             dynamicLogo.textContent = `${storageUserData[i].firstName} : ${storageUserData[i].lastName}`
+
+            menuUserName.textContent = `${storageUserData[i].firstName} ${storageUserData[i].lastName}`
+
+            menuUserId.textContent = `User ID: ${storageUserData[i].id}`
 
 
             // Some time later
@@ -403,9 +420,15 @@ function goDataToDataBase() {
 
     localStorage.setItem('userLastName', userLastName)
 
+    localStorage.setItem('userId', uniqueIdNumber)
+
     nameOfUser.textContent = userFirstName
 
     dynamicLogo.textContent = `${userFirstName} : ${userLastName}`
+
+    menuUserName.textContent = `${userFirstName} ${userLastName}`
+
+    menuUserId.textContent = `User ID: ${uniqueIdNumber}`
 
     // Success Message
     showLoading()
@@ -456,3 +479,39 @@ function generateUniqueRandomNumber() {
     usedNumbers.add(randomNumber);
     return randomNumber;
 }
+
+// ============ Main page works ================
+
+const userIcon = document.querySelector('.user-icon')
+const userMenuCloseBtn = document.querySelector('.user-menu-close')
+const userMenu = document.querySelector('.user-actions')
+const notificationIcon = document.querySelector('.notification')
+const logoutOption = document.querySelector('.logout-option')
+
+// Click in user icon
+userIcon.addEventListener('click', () => {
+    userMenu.classList.toggle('show-user-menu')
+})
+
+userMenuCloseBtn.addEventListener('click', () => {
+    userMenu.classList.remove('show-user-menu')
+})
+
+notificationIcon.addEventListener('click', () => {
+    userMenu.classList.remove('show-user-menu')
+})
+
+// Log Out the site
+logoutOption.addEventListener('click', () => {
+    showOverlay()
+    mainPageLoading.classList.add('show')
+    setTimeout(() => {
+        userMenu.classList.remove('show-user-menu')
+        maninPage.classList.remove('display')
+        localStorage.setItem('mainPage', 'false')
+        setTimeout(() => {
+            hideOverlay()
+            mainPageLoading.classList.remove('show')
+        }, 1000)
+    }, 2000)
+})

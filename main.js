@@ -486,11 +486,13 @@ const userIcon = document.querySelector('.user-icon')
 const userMenuCloseBtn = document.querySelector('.user-menu-close')
 const userMenu = document.querySelector('.user-actions')
 const notificationIcon = document.querySelector('.notification')
+const notificationBody = document.querySelector('.notification-body')
 const logoutOption = document.querySelector('.logout-option')
 
 // Click in user icon
 userIcon.addEventListener('click', () => {
     userMenu.classList.toggle('show-user-menu')
+    notificationBody.classList.remove('show-notifications')
 })
 
 userMenuCloseBtn.addEventListener('click', () => {
@@ -498,6 +500,7 @@ userMenuCloseBtn.addEventListener('click', () => {
 })
 
 notificationIcon.addEventListener('click', () => {
+    notificationBody.classList.toggle('show-notifications')
     userMenu.classList.remove('show-user-menu')
 })
 
@@ -515,3 +518,6 @@ logoutOption.addEventListener('click', () => {
         }, 1000)
     }, 2000)
 })
+
+// For user image change
+

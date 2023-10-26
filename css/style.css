@@ -234,12 +234,62 @@ body {
     align-items: center;
 }
 
-.notification {
+.notification-icon {
     position: relative;
     cursor: pointer;
 }
 
-.notification span {
+.notification-body {
+    position: absolute;
+    color: #fff;
+    top: 100px;
+    right: 8px;
+    background: #4242428f;
+    font-family: tahoma;
+    padding: 33px 34px 15px 50px;
+    border-radius: 11px;
+    backdrop-filter: blur(2px);
+    transition: .4s;
+    width: 280px;
+    z-index: 1;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.notification-body.show-notifications {
+    opacity: 1;
+    visibility: visible;
+    top: 61px;
+}
+
+.notification-body h4 {
+    text-align: center;
+    font-family: cursive;
+    font-size: 18px;
+    margin-bottom: 10px;
+    border-bottom: 4px double #4E3D95;
+    padding-bottom: 13px;
+}
+
+.notification-body ul li {
+    list-style: none;
+    font-size: 15px;
+    margin-bottom: 2px;
+    color: #999;
+    cursor: pointer;
+    background: transparent;
+    padding: 10px 0px 10px 22px;
+    border-radius: 5px;
+    line-height: 24px;
+    transition: .2s;
+}
+
+.notification-body ul li:hover {
+    background: #3e3e3e;
+}
+
+
+.notification-icon span {
     position: absolute;
     background-color: red;
     width: 17px;
@@ -254,7 +304,7 @@ body {
     right: 17px;
 }
 
-.header-top-icons .notification i {
+.header-top-icons .notification-icon i {
     color: #fff;
     font-size: 22px;
     margin-right: 23px;
@@ -362,15 +412,17 @@ body {
     border-radius: 11px;
     backdrop-filter: blur(2px);
     opacity: 0;
+    visibility: hidden;
     transition: .4s;
 } 
 
 .user-actions.show-user-menu {
     opacity: 1;
+    visibility: visible;
     top: 61px;
 }
 
-.user-menu-close {
+.close-btn {
     font-size: 14px;
     position: absolute;
     top: 0;

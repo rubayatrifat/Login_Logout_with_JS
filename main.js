@@ -484,6 +484,7 @@ function generateUniqueRandomNumber() {
 
 const userIcon = document.querySelector('.user-icon')
 const userMenuCloseBtn = document.querySelector('.user-menu-close')
+const notificationClose = document.querySelector('.notification-close')
 const userMenu = document.querySelector('.user-actions')
 const notificationIcon = document.querySelector('.notification')
 const notificationBody = document.querySelector('.notification-body')
@@ -497,6 +498,10 @@ userIcon.addEventListener('click', () => {
 
 userMenuCloseBtn.addEventListener('click', () => {
     userMenu.classList.remove('show-user-menu')
+})
+
+notificationClose.addEventListener('click', () => {
+    notificationBody.classList.remove('show-notifications')
 })
 
 notificationIcon.addEventListener('click', () => {
